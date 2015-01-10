@@ -1,5 +1,5 @@
 # toast
-The OLCF Asset Staging Tool. Download the latest version [here](https://github.com/robertdfrench/toast/archive/v0.1.1.tar.gz)
+The OLCF Asset Staging Tool. https://github.com/robertdfrench/toast/archive/v0.1.1.tar.gz
 
 Toast can be used to load assets onto node-local filesystems (such as ramdisk or SSD) prior to application launch. This can reduce stress on parallel filesystems, and help speed up the load time of leadership scale applications.
 
