@@ -1,5 +1,5 @@
 # toast
-The OLCF Asset Staging Tool. Download the latest version (here)[https://github.com/robertdfrench/toast/archive/v0.1.0.tar.gz]
+The OLCF Asset Staging Tool. Download the latest version [here](https://github.com/robertdfrench/toast/archive/v0.1.1.tar.gz)
 
 Toast can be used to load assets onto node-local filesystems (such as ramdisk or SSD) prior to application launch. This can reduce stress on parallel filesystems, and help speed up the load time of leadership scale applications.
 
@@ -18,5 +18,8 @@ An asset is any small-ish file that an application process (in MPI terms, a "ran
 ### Why stage?
 Typically it is advantageous to embed assets statically into your application, but this may not always be convenient, or may require changes in your code. For these situations, toast can push assets to each node for you; the application can then load them locally, which saves congestion on the shared filesystem.
 
-### How does work?
+### How does it work?
 Before launching your application, run one rank of toast on each node in your job. Toast will balance itself so that only a few ranks will load your assets from the shared filesystem. Once loaded, toast will broadcast your assets to all the other nodes allocated to your application, persisting them to whatever local path you define.
+
+### What about caching?
+Caching can occur, for instance, at the operating system within each node, and also at the level of the shared filesystem. Because a file is typically not available in cache until the first time it has been fully delivered, requests that begin before that time may not be able to leverage cached assets. Broadcasting assets within the compute network reduces demand on the storage network.
