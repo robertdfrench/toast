@@ -10,10 +10,13 @@ clean:
 	rm -rf *.dat
 
 assets/ten_megs.dat:
+	mkdir -p assets
 	dd if=/dev/urandom of=assets/ten_megs.dat bs=1M count=10
 
-asses/hundred_megs.dat:
+assets/hundred_megs.dat:
+	mkdir -p assets
 	dd if=/dev/urandom of=assets/hundred_megs.dat bs=1M count=100
 
 assets/one_gig.dat:
+	mkdir -p assets
 	dd if=/dev/urandom of=assets/one_gig.dat bs=1M count=1000

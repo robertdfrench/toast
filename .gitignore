@@ -33,3 +33,4 @@ toast
 
 # Test Assets
 *.dat
+tests/environment.sh
