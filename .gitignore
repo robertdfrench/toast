@@ -26,3 +26,7 @@
 *.exe
 *.out
 *.app
+toast
+
+# Vim Swap files
+*.swp
