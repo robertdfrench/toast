@@ -25,12 +25,15 @@ void ToastAsset::load(boost::filesystem::path asset_source_path) {
   
 void ToastAsset::save() {
   boost::filesystem::path asset_destination_path(this.destination_path);
-  boost::filesystem::path asset_filename(this.filename);
-  std::ofstream asset_stream(assset_destination_path / asset_filename, std::ios::out | std::ios::binary);
+  std::ofstream asset_stream(assset_destination_path, std::ios::out | std::ios::binary);
   if (asset_stream) {
     asset_stream << this.contents;
     asset_stream.close();
   } else {
     throw(errno);
   }
+}
+
+void ToastAsset::setDestinationPath(boost::filesystem::path asset_destination_path) {
+  this.destination_path = asset_destination_path;
 }
