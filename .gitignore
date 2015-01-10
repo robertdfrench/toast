@@ -30,3 +30,6 @@ toast
 
 # Vim Swap files
 *.swp
+
+# Test Assets
+*.dat
