@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
   }
 
   // Set up local communicator
-  mpi::communicator local = world.split(world.rank() % 10);
+  mpi::communicator local = world.split(world.rank() / 10);
 
   // Load Asset (Local Rank Zeroes only)
   ToastAsset ta;
