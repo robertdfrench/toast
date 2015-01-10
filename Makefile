@@ -9,11 +9,11 @@ clean:
 	rm -rf toast
 	rm -rf *.dat
 
-asset_ten_megs.dat:
-	dd if=/dev/urandom of=asset_ten_megs.dat bs=1M count=10
+assets/ten_megs.dat:
+	dd if=/dev/urandom of=assets/ten_megs.dat bs=1M count=10
 
-asset_hundred_megs.dat:
-	dd if=/dev/urandom of=asset_hundred_megs.dat bs=1M count=100
+asses/hundred_megs.dat:
+	dd if=/dev/urandom of=assets/hundred_megs.dat bs=1M count=100
 
-asset_on_gig.dat:
-	dd if=/dev/urandom of=asset_one_gig.dat bs=1M count=1000
+assets/one_gig.dat:
+	dd if=/dev/urandom of=assets/one_gig.dat bs=1M count=1000
