@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#PBS -j oe
+cd /ccs/home/frenchrd/Projects/toast
+source tests/titan-shared-libs.sh

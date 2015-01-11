@@ -34,3 +34,6 @@ toast
 # Test Assets
 *.dat
 tests/environment.sh
+*.OU
+*.pbs.e*
+*.pbs.o*
