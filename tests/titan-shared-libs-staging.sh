@@ -22,5 +22,5 @@ cd $SCRATCH_PATH
 # Stage, then Launch
 echo "Staging first, then launching shared library test"
 time aprun -n $PBS_NUM_NODES -N 1 ./toast libdummy.so /tmp/scratch/libdummy.so
-export LD_LIBRARY_PATH="/tmp/scratch":$OLD_LLP
+export LD_LIBRARY_PATH="/tmp/scratch":$LD_LIBRARY_PATH
 time aprun -n $((PBS_NUM_NODES * 16)) ./test_shared-lib.exe

@@ -21,6 +21,5 @@ cd $SCRATCH_PATH
 
 # Launch without staging 
 echo "Launching shared library test without staging"
-OLD_LLP=$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$SCRATCH_PATH:$OLD_LLP
+export LD_LIBRARY_PATH=$SCRATCH_PATH:$LD_LIBRARY_PATH
 time aprun -n $((PBS_NUM_NODES * 16)) ./test_shared-lib.exe

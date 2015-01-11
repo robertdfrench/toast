@@ -25,7 +25,7 @@ assets/one_gig.dat:
 	dd if=/dev/urandom of=assets/one_gig.dat bs=1M count=1000
 
 test_shared-lib.exe: libdummy.so $(SLT)/test_shared-lib.cpp $(SLT)/libdummy.h
-	CC -Wall -L. $(SLT)/test_shared-lib.cpp -o test_shared-lib.exe -ldummy
+	CC -Wall -L. $(SLT)/test_shared-lib.cpp -o test_shared-lib.exe -dynamic -ldummy
 
 libdummy.so: libdummy.o
 	CC -shared -o libdummy.so libdummy.o
