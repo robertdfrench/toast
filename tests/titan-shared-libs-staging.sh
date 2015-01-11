@@ -9,6 +9,7 @@ module swap PrgEnv-pgi PrgEnv-gnu
 module load boost
 
 # Build toast
+cd /ccs/home/frenchrd/Projects/toast
 make toast
 cp toast $SCRATCH_PATH
 
