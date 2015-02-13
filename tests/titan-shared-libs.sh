@@ -14,9 +14,12 @@ make toast
 cp toast $SCRATCH_PATH
 
 # Build dummy app that depends on a dylib
-make test_shared-lib.exe
-cp test_shared-lib.exe $SCRATCH_PATH
-cp libdummy.so $SCRATCH_PATH
+for i in {1..10}
+do
+	make test_shared-lib.exe
+	cp test_shared-lib.exe $SCRATCH_PATH/test_shared-lib.$i.exe
+	cp libdummy.so $SCRATCH_PATH/lib
+done
 
 cd $SCRATCH_PATH
 
