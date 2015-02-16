@@ -11,6 +11,7 @@ clean:
 	rm -rf *.dat
 	rm -rf *.exe
 	rm -rf *.so
+	rm -rf build/tests/*
 
 assets/ten_megs.dat:
 	mkdir -p assets
@@ -24,11 +25,19 @@ assets/one_gig.dat:
 	mkdir -p assets
 	dd if=/dev/urandom of=assets/one_gig.dat bs=1M count=1000
 
-test_shared-lib%.exe: libdummy%.so $(SLT)/test_shared-lib.cpp $(SLT)/libdummy.h
-	CC -Wall -L. $(SLT)/test_shared-lib.cpp -o test_shared-lib$*.exe -dynamic -ldummy$*
+build/tests/test_shared-lib%.exe: build/tests/libdummy%.so $(SLT)/test_shared-lib.cpp $(SLT)/libdummy.h
+	mkdir -p build
+	mkdir -p build/tests
+	CC -Wall -Lbuild/tests/ $(SLT)/test_shared-lib.cpp -o build/tests/test_shared-lib$*.exe -dynamic -ldummy$*
 
-libdummy%.so: libdummy.o
-	CC -shared -o $@ libdummy.o
+build/tests/libdummy%.so: build/tests/libdummy.o
+	mkdir -p build
+	mkdir -p build/tests
+	CC -shared -o $@ build/tests/libdummy.o
 
-libdummy.o: $(SLT)/libdummy.h $(SLT)/libdummy.cpp
-	CC -c -Wall -Werror -fpic $(SLT)/libdummy.cpp
+build/tests/libdummy.o: $(SLT)/libdummy.h $(SLT)/libdummy.cpp
+	mkdir -p build
+	mkdir -p build/tests
+	CC -c -Wall -Werror -fpic $(SLT)/libdummy.cpp -o $@
+
+.PRECIOUS: build/tests/libdummy%.so
