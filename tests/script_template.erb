@@ -6,17 +6,21 @@
 #PBS -j oe
 
 export TOAST_OLD_PATH=$LD_LIBRARY_PATH
+cd <%= @shared_filesystem_path %>
 
 echo "Launch without staging: `date`"
 export LD_LIBRARY_PATH=<%= @shared_filesystem_path %>:$TOAST_OLD_PATH
-<% @unstaged_jobs.each do |job| %>
-aprun -n <%= @nodes %> -N 1 ./<%= job %>
+<% (1..@num_trials).each do |j| %>
+aprun -n <%= @nodes * @density %> -N <%= @density %> ./test_shared-lib<%= j %>.exe
 <% end %>
 echo "End stageless trial: `date`"
 
 echo "Launch with staging: `date`"
 export LD_LIBRARY_PATH=<%= @node_fileystem_path %>:$TOAST_OLD_PATH
-<% @staged_jobs.each do |job| %>
-aprun -n <%= @nodes %> -N 1 ./<%= job %>
+<% start = @num_trials + 1 %>
+<% stop = @num_trials * 2 %>
+<% (start..stop).each do |j| %>
+aprun -n <%= @nodes %> -N 1 ./toast <%= @shared_filesystem_path %>/libdummy<%= j %>.so <%= @node_filesystem_path %>/libdummy<%= j %>.so
+aprun -n <%= @nodes * @density %> -N <%= @density %> ./test_shared-lib<%= j %>.exe
 <% end %>
 echo "End staging trial: `date`"

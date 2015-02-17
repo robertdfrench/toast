@@ -1,0 +1,10 @@
+{
+	"account": "prj001",
+	"nodes": 50,
+	"seconds": 1200,
+	"name": "toast",
+	"shared_filesystem_path": "$MEMBERWORK/prj001",
+	"node_filesystem_path": "/tmp/scratch",
+	"num_trials": 100,
+	"density": 16
+}
