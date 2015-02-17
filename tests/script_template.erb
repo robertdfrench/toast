@@ -1,0 +1,22 @@
+#!/bin/bash
+#PBS -A <%= @account %>
+#PBS -l nodes=<%= @nodes %>
+#PBS -l walltime=<%= @seconds %>
+#PBS -N <%= @name %>
+#PBS -j oe
+
+export TOAST_OLD_PATH=$LD_LIBRARY_PATH
+
+echo "Launch without staging: `date`"
+export LD_LIBRARY_PATH=<%= @shared_filesystem_path %>:$TOAST_OLD_PATH
+<% @unstaged_jobs.each do |job| %>
+aprun -n <%= @nodes %> -N 1 ./<%= job %>
+<% end %>
+echo "End stageless trial: `date`"
+
+echo "Launch with staging: `date`"
+export LD_LIBRARY_PATH=<%= @node_fileystem_path %>:$TOAST_OLD_PATH
+<% @staged_jobs.each do |job| %>
+aprun -n <%= @nodes %> -N 1 ./<%= job %>
+<% end %>
+echo "End staging trial: `date`"
