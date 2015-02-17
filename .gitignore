@@ -37,3 +37,6 @@ tests/environment.sh
 *.OU
 *.pbs.e*
 *.pbs.o*
+
+environment.json
+toast.o*
